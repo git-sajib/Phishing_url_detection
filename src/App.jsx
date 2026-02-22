@@ -36,7 +36,7 @@ export default function App() {
       } else {
         setResult(data.result);
         setScore(data.legitimate_percentage || 0);
-        setShap(data.shap || null);
+        setShap(data.shap_values || null);  // SHAP explanation (if provided)
       }
     } catch (err) {
       setError("Error connecting to server");

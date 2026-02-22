@@ -21,13 +21,23 @@ export default function RiskChart({ score }) {
       {
         label: "Risk Analysis",
         data: [score, 100 - score],
+        backgroundColor: ["#22c55e", "#ef4444"], // green, red
       },
     ],
   };
 
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+      },
+    },
+  };
+
   return (
-    <div className="mt-4">
-      <Bar data={data} />
+    <div className="mt-4 p-4 bg-white dark:bg-gray-900 rounded-lg shadow">
+      <Bar data={data} options={options} />
     </div>
   );
 }

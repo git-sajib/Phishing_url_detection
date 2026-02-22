@@ -9,9 +9,6 @@ export default function DarkModeToggle() {
     if (saved === "dark") {
       document.documentElement.classList.add("dark");
       setDark(true);
-    } else {
-      document.documentElement.classList.remove("dark");
-      setDark(false);
     }
   }, []);
 
@@ -27,7 +24,7 @@ export default function DarkModeToggle() {
 
   return (
     <button
-      onClick={() => setDark(!dark)}
+      onClick={() => setDark((prev) => !prev)}
       className="px-4 py-2 rounded bg-gray-200 dark:bg-gray-800 text-black dark:text-white"
     >
       {dark ? "🌙 Dark Mode" : "☀️ Light Mode"}

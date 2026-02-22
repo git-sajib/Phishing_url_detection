@@ -13,13 +13,14 @@ export default function ResultCard({ result, score, shap }) {
         Legitimate Probability: <strong>{score}%</strong>
       </p>
 
-      {shap?.features && (
+      {/* SHAP explanation (safe handling) */}
+      {shap && Array.isArray(shap) && shap.length > 0 && (
         <div className="mt-4">
           <h4 className="font-semibold">Top Contributing Features</h4>
           <ul className="text-sm">
-            {shap.features.map((f, i) => (
+            {shap.slice(0, 5).map((item, i) => (
               <li key={i}>
-                {f}: {shap.importance[i]?.toFixed(3)}
+                {item.feature}: {item.importance?.toFixed(3)}
               </li>
             ))}
           </ul>
