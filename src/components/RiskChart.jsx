@@ -9,9 +9,12 @@ import {
   Legend,
 } from "chart.js";
 
+// Register Chart.js components (important)
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 export default function RiskChart({ score }) {
+  if (score === undefined || score === null) return null;
+
   const data = {
     labels: ["Legitimate", "Risk"],
     datasets: [

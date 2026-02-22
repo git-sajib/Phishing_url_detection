@@ -1,4 +1,6 @@
-export default function ResultCard({ result, score }) {
+export default function ResultCard({ result, score, shap }) {
+  if (!result) return null;
+
   const isLegit = score >= 50;
 
   return (
@@ -10,6 +12,19 @@ export default function ResultCard({ result, score }) {
       <p className="text-sm mt-2">
         Legitimate Probability: <strong>{score}%</strong>
       </p>
+
+      {shap?.features && (
+        <div className="mt-4">
+          <h4 className="font-semibold">Top Contributing Features</h4>
+          <ul className="text-sm">
+            {shap.features.map((f, i) => (
+              <li key={i}>
+                {f}: {shap.importance[i]?.toFixed(3)}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
